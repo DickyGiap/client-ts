@@ -1,0 +1,39 @@
+{
+  "name": "@foundation-network/core",
+  "version": "0.0.1",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "license": "MIT",
+  "files": [
+    "dist/**"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FoundationNetwork/client-ts",
+    "directory": "packages/core"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --external viem",
+    "dev": "tsup src/index.ts --format esm,cjs --watch --dts --external viem",
+    "lint": "eslint \"src/**/*.ts*\"",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "devDependencies": {
+    "@foundation-network/eslint-config": "workspace:*",
+    "@foundation-network/tsconfig": "workspace:*",
+    "@types/react": "^18.2.61",
+    "@types/react-dom": "^18.2.19",
+    "eslint": "^8.57.0",
+    "tsup": "^8.0.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "viem": "^2.21.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
