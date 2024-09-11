@@ -22,7 +22,7 @@ import {
 type Account = LocalAccount | SmartAccount;
 
 export const TESTNET_RPC_URL =
-  'https://testnet-rpc.foundation.network/perpetual';
+  'https://testnet-rpc.foundation.network/spot';
 
 export const TESTNET_API_URL = 'https://testnet-api.foundation.network';
 
@@ -163,7 +163,7 @@ export class FoundationSpotClient {
   private async getSigningConfig() {
     if (!this.config) {
       this.config = (await this.rpcClient.request({
-        method: 'core_get_signing_config',
+        method: 'core_get_config',
       })) as SigningConfig;
     }
 
