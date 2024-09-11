@@ -83,8 +83,8 @@ export class FoundationSpotClient {
     flag_?: Partial<OrderFlag> | undefined,
   ) {
     const assets = await this.getAssets();
-    const baseAsset = assets.find((t) => t.name === base);
-    const quoteAsset = assets.find((t) => t.name === quote);
+    const baseAsset = assets.find((t) => t.ticker === base);
+    const quoteAsset = assets.find((t) => t.ticker === quote);
     const config = await this.getSigningConfig();
 
     assert(baseAsset && quoteAsset, 'Unknown assets');
@@ -131,7 +131,7 @@ export class FoundationSpotClient {
       params: [
         {
           account_id: this.subaccount,
-          pair: [base, quote],
+          pair: [baseAsset.asset_id, quoteAsset.asset_id],
           side,
           price,
           amount,
