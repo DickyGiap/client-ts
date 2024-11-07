@@ -1,4 +1,4 @@
-import type { Address, Hash } from 'viem';
+import type {Address, Hash} from 'viem';
 
 export enum ProductType {
   Unknown = 0,
@@ -68,6 +68,18 @@ export const encodeFlag = (flag: OrderFlag) => {
   );
 };
 
+export const encodeSpotFlag = (flag: OrderFlag) => {
+  const isMarket = flag.isMarketOrder ? 1n : 0n;
+  const tif = BigInt(TIME_IN_FORCES.indexOf(flag.timeInForce));
+  const stb = BigInt(SELF_TRADE_BEHAVIORS.indexOf(flag.selfTradeBehavior));
+  return (
+    (tif << 62n) |
+    (isMarket << 60n) |
+    (stb << 58n) |
+    BigInt(flag.expiresAt || 0)
+  );
+};
+
 export const EIP712_DOMAIN = {
   name: 'FOUNDATION',
   chainId: 1,
@@ -82,3 +94,5 @@ export type OrderStatus =
   | 'partial_filled'
   | 'canceled'
   | 'conditional_canceled';
+
+export const PRECISION = 8

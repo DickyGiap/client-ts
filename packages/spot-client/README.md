@@ -23,5 +23,9 @@ const client = new FoundationSpotClient(signer, {
     apiUrl: TESTNET_API_URL,
 });
 
-await client.placeLimit('BTC', 'USDT', 'ask', '61000', '1');
+const marketId = 1;
+const price = '61000';
+const amount = '1';
+
+await client.placeLimit(marketId, 'ask', price, amount);
 ```
